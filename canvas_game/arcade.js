@@ -32,7 +32,7 @@ arcadeBtn.onclick = () => {
 
     let playerSpeed = zoom / 5;
 
-    let game = true;
+    let pause = false;
 
     let apples = 0;
 
@@ -356,7 +356,7 @@ arcadeBtn.onclick = () => {
 
     function gameLoop() {
         setInterval(() => {
-            if (game) {
+            if (!pause) {
                 canvCtx.clearRect(0, 0, canvas.width, canvas.height)
                 player.move();
                 ability.drawIndicator();
@@ -405,10 +405,10 @@ arcadeBtn.onclick = () => {
             player.direction = "right"
         }
 
-        if (key == " " & game) {
-            game = false;
-        } else if (key == " " & !game) {
-            game = true;
+        if (key == " " & !pause) {
+            pause = true;
+        } else if (key == " " & pause) {
+            pause = false;
         }
 
         /* void it's a space key idk why */
